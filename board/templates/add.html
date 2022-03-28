@@ -1,0 +1,12 @@
+{% block title %}
+    Add an advert
+{% endblock title %}
+
+{% block content %}
+    <h3>Advert content</h3>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Добавить объявление">
+    </form>
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% block title %}
+<h1>All adverts</h1>
+{% endblock title %}
+
+{% block content %}
+    <hr>
+    <button><a href="/adverts/my_comments"> My comments</a></button>
+    <button><a href="/adverts/create_comment"> Write comment </a></button>
+    <hr>
+    <button><a href="/adverts/add/"> Add an advert</a></button>
+    {% if adverts %}
+        {% for advert in adverts %}
+            <h1>{{ advert.heading }}</h1>
+            <h3>{{ advert.text }}</h3>
+            <h4>{{ advert.upload.url }}</h4>
+            <a href="{% url 'change' advert.id %}"><u>Change</u></a>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <h2>No adverts</h2>
+    {% endif %}
+    Account <button><a href="/accounts/signup/"> Sign up</a></button>
+    <button><a href="/accounts/login/"> Login</a></button>
+    <button><a href="/accounts/logout/"> Logout</a></button>
+{% endblock content %}

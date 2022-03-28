@@ -1,0 +1,24 @@
+{% block title %}
+    <h1>Comments to my adverts</h1>
+{% endblock title %}
+
+{% block content %}
+    <form method="GET">
+        {{ filter.form }}
+        <input type="submit" value="Filter">
+    </form>
+    <hr>
+    {% if filter %}
+        {% for comment in filter.qs %}
+            <h2>{{ comment.text }} | Accepted: {{ comment.accepted }}</h2>
+            {% if comment.accepted == False %}
+                <button><a href="{% url 'accept' comment.id %}"><u> Accept </u></a></button>
+            {% endif %}
+            <button><a href="{% url 'delete' comment.id %}"><u> Delete </u></a></button>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <h2>No comments</h2>
+    {% endif %}
+    <button><a href="/adverts/"> All adverts</a></button>
+{% endblock content %}
